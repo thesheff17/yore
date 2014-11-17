@@ -192,7 +192,7 @@ class Yore:
         if os.path.isfile(self.directory + ".vimrc"):
             self.runCommand("rm " + self.directory + '.vimrc', True)
 
-        if os.path.isdire(self.directory + ".virtualenvs"):
+        if os.path.isdir(self.directory + ".virtualenvs"):
             self.runCommand("rm -rf " + self.directory + '.virtualenvs', True)
 
 
