@@ -19,7 +19,9 @@ Requirements
 ############
 Installation
 ############
-    * git clone https://github.com/thesheff17/yore
+    * copy/paste the below command:
+        * apt-get upgrade && apt-get -y install wget python && wget --no-check-certificate https://raw.github.com/thesheff17/yore/master/yore.py && python yore.py run
+
     * python yore.py apt-mirror - If you have your own local ubuntu mirror
     * python yore.py run        - configures your instances for developement
     * python yore.py clean      - cleans up so you can run the script again
@@ -38,5 +40,5 @@ Technical Details
     * https://github.com/tpope/vim-pathogen
     * https://github.com/kien/ctrlp.vim.git
     * https://github.com/scrooloose/nerdtree
-    * git://github.com/klen/python-mode.git  
-    * git://github.com/Lokaltog/vim-powerline.git
+    * https://github.com/klen/python-mode.git
+    * https://github.com/Lokaltog/vim-powerline.git

@@ -64,11 +64,11 @@ class Yore:
 
         # git repos
         self.vimRepo = []
-        self.vimRepo.append("git clone git://github.com/tpope/vim-sensible.git")
+        self.vimRepo.append("git clone https://github.com/tpope/vim-sensible.git")
         self.vimRepo.append("git clone https://github.com/kien/ctrlp.vim.git")
         self.vimRepo.append("git clone https://github.com/scrooloose/nerdtree")
-        self.vimRepo.append("git clone git://github.com/klen/python-mode.git")
-        self.vimRepo.append("git clone git://github.com/Lokaltog/" +
+        self.vimRepo.append("git clone https://github.com/klen/python-mode.git")
+        self.vimRepo.append("git clone https://github.com/Lokaltog/" +
                             "vim-powerline.git")
 
     def checkRoot(self):
