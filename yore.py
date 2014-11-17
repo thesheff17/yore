@@ -170,8 +170,8 @@ class Yore:
             # colors file
             self.runCommand("curl -LSso " + directory +
                             ".vim/colors/wombat256mod.vim" +
-                            " http://www.vim.org/scripts/download_script.php?" +
-                            "src_id=13400", True)
+                            " https://raw.githubusercontent.com/thesheff17/" +
+                            "yore/master/wombat256mod.vim", True)
 
     def fixPermissions(self):
         directory = "/home/" + self.defaultUser + "/"
