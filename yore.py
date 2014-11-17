@@ -214,6 +214,7 @@ if __name__ == "__main__":
         yore.vim()
         yore.fixPermissions()
         yore.buildLocateDB()
+        yore.getRequirementsSample()
 
     if option == "apt-mirror":
         yore.clearScreen()
