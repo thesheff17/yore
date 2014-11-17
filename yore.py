@@ -153,14 +153,16 @@ class Yore:
 
             # my .vimrc file
             self.runCommand("curl -LSso " + directory + ".vimrc" +
-                            " https://tpo.pe/pathogen.vim", True)
+                            " https://raw.githubusercontent.com/thesheff17/" +
+                            "yore/master/vimrc", True)
 
             # Due to this bug I have committed my own version of lint.py
             # https://github.com/klen/python-mode/issues/452
             lintFile = directory + ".vim/bundle/python-mode/pymode/lint.py"
             self.runCommand("rm " + lintFile)
             self.runCommand("curl -LSso " + lintFile +
-                            " https://tpo.pe/pathogen.vim", True)
+                            " https://raw.githubusercontent.com/thesheff17/"
+                            "yore/master/lint.py", True)
 
     def fixPermissions(self):
         directory = "/home/" + self.defaultUser + "/"
