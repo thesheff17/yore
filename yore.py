@@ -105,6 +105,7 @@ class Yore:
         print "Please enter a non privileged user name usually ubuntu"
         print ""
         self.defaultUser = raw_input("Enter a username: ")
+        self.directory = "/home/" + self.defaultUser + "/"
 
     def runCommand(self, commandList, useShell=False):
         status = subprocess.call(commandList, shell=useShell)
@@ -133,50 +134,49 @@ class Yore:
     def pipPackages(self):
         self.runCommand(self.pip)
 
-    def configureVirtualEnv(self):
-        pass
-        # "virtualenv test"
-        # "source test/bin/activate && pip install -r test/requirements.txt"
-
     def vim(self):
-        directory = "/home/" + self.defaultUser + "/"
-        if not os.path.isdir(directory + '.vim/'):
-            os.makedirs(directory + '.vim/')
-            os.makedirs(directory + '.vim/autoload')
-            os.makedirs(directory + '.vim/bundle')
-            os.makedirs(directory + '.vim/colors')
+        if not os.path.isdir(self.directory + '.vim/'):
+            os.makedirs(self.directory + '.vim/')
+            os.makedirs(self.directory + '.vim/autoload')
+            os.makedirs(self.directory + '.vim/bundle')
+            os.makedirs(self.directory + '.vim/colors')
 
-            self.runCommand("curl -LSso " + directory +
+            self.runCommand("curl -LSso " + self.directory +
                             ".vim/autoload/pathogen.vim " +
                             "https://tpo.pe/pathogen.vim", True)
 
             for each in self.vimRepo:
-                self.runCommand("cd " + directory + ".vim/bundle && " +
+                self.runCommand("cd " + self.directory + ".vim/bundle && " +
                                 each, True)
 
             # my .vimrc file
-            self.runCommand("curl -LSso " + directory + ".vimrc" +
+            self.runCommand("curl -LSso " + self.directory + ".vimrc" +
                             " https://raw.githubusercontent.com/thesheff17/" +
                             "yore/master/vimrc", True)
 
             # Due to this bug I have committed my own version of lint.py
             # https://github.com/klen/python-mode/issues/452
-            lintFile = directory + ".vim/bundle/python-mode/pymode/lint.py"
+            lintFile = self.directory + ".vim/bundle/python-mode/pymode/lint.py"
             self.runCommand(["rm", lintFile])
             self.runCommand("curl -LSso " + lintFile +
                             " https://raw.githubusercontent.com/thesheff17/"
                             "yore/master/lint.py", True)
 
             # colors file
-            self.runCommand("curl -LSso " + directory +
+            self.runCommand("curl -LSso " + self.directory +
                             ".vim/colors/wombat256mod.vim" +
                             " https://raw.githubusercontent.com/thesheff17/" +
                             "yore/master/wombat256mod.vim", True)
 
+    def getRequirementsSample(self):
+        self.runCommand("curl -LSso " + self.directory +
+                        "requirements.txt " +
+                        "https://raw.githubusercontent.com/thesheff17/" +
+                        "yore/master/requirementsSample.txt", True)
+
     def fixPermissions(self):
-        directory = "/home/" + self.defaultUser + "/"
         self.runCommand(["chown", "-H", "-R", self.defaultUser + ":" +
-                         self.defaultUser, directory])
+                         self.defaultUser, self.directory])
 
     def buildLocateDB(self):
         self.runCommand("updatedb")
