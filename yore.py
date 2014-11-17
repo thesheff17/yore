@@ -64,7 +64,8 @@ class Yore:
 
         # git repos
         self.vimRepo = []
-        self.vimRepo.append("git clone https://github.com/tpope/vim-sensible.git")
+        self.vimRepo.append("git clone https://github.com/tpope/" +
+                            "vim-sensible.git")
         self.vimRepo.append("git clone https://github.com/kien/ctrlp.vim.git")
         self.vimRepo.append("git clone https://github.com/scrooloose/nerdtree")
         self.vimRepo.append("git clone https://github.com/klen/python-mode.git")
@@ -143,6 +144,7 @@ class Yore:
             os.makedirs(directory + '.vim/')
             os.makedirs(directory + '.vim/autoload')
             os.makedirs(directory + '.vim/bundle')
+            os.makedirs(directory + '.vim/colors')
 
             self.runCommand("curl -LSso " + directory +
                             ".vim/autoload/pathogen.vim " +
@@ -164,6 +166,12 @@ class Yore:
             self.runCommand("curl -LSso " + lintFile +
                             " https://raw.githubusercontent.com/thesheff17/"
                             "yore/master/lint.py", True)
+
+            # colors file
+            self.runCommand("curl -LSso " + directory +
+                            ".vim/colors/wombat256mod.vim" +
+                            " http://www.vim.org/scripts/download_script.php?" +
+                            "src_id=13400", True)
 
     def fixPermissions(self):
         directory = "/home/" + self.defaultUser + "/"
