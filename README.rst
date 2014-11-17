@@ -22,13 +22,27 @@ Installation
 * copy/paste the below command if you do have a local mirror
     * apt-get upgrade && apt-get -y install wget python && wget --no-check-certificate https://raw.github.com/thesheff17/yore/master/yore.py && python yore.py apt-mirror && python yore.py run
 
+#####
+Usage
+#####
+* log out and log back in to make sure the vim settings take effect
+* create a new virtualenv
+    * mkvirtualenv test
+* copy the default requirements file into the virtualenv
+    * cp ~/requirements.txt .
+* install the packages
+    * pip install -r requirements.txt
+* used after a virtualenv is already created
+    * workon test
+
+
 #################
 Technical Details
 #################
 
 * apt-get the folling packages: python-pip python-dev build-essential bpython  git-core postgresql postgresql-contrib vim libpq-dev curl wget openssh-server locate
 * apt-get non interactive packages: mailutils mutt postfix sendemail mysql-server
-* pip installvirtualenv autoenv
+* pip install virtualenv autoenv virtualenvwrapper
 * Vim plugins:
     * https://github.com/tpope/vim-pathogen
     * https://github.com/kien/ctrlp.vim.git
