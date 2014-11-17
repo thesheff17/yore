@@ -31,7 +31,7 @@ yore.py - This program will create a development env from start to finish
 import os
 import sys
 import subprocess
-import time
+import timeit
 
 
 class Yore:
@@ -184,8 +184,7 @@ class Yore:
 
 if __name__ == "__main__":
     print "yore.py started..."
-
-    start_time = time.time()
+    start = timeit.default_timer()
 
     yore = Yore()
     yore.checkRoot()
@@ -218,6 +217,6 @@ if __name__ == "__main__":
         yore.clearScreen()
         yore.preMenu2()
         yore.clean()
-
-    print("--- %s seconds ---" % time.time() - start_time)
+    stop = timeit.default_timer()
+    print stop - start
     print "yore.py completed..."
