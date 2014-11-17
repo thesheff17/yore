@@ -10,21 +10,17 @@ Requirements
 ############
     * Latest http://www.ubuntu.com/ LTS version
     * Python 2.7.x 
-      * install: sudo apt-get update && sudo apt-get -y python
     * git 
-        * install: sudo apt-get update && sudo apt-get -y git-core
     * non privileged user - usually called ubuntu 
         * add user: sudo useradd -m ubuntu
 
 ############
 Installation
 ############
-    * copy/paste the below command:
+    * copy/paste the below command if you don't have a local mirror
         * apt-get upgrade && apt-get -y install wget python && wget --no-check-certificate https://raw.github.com/thesheff17/yore/master/yore.py && python yore.py run
-
-    * python yore.py apt-mirror - If you have your own local ubuntu mirror
-    * python yore.py run        - configures your instances for developement
-    * python yore.py clean      - cleans up so you can run the script again
+    * copy/paste the below command if you do have a local mirror
+        * apt-get upgrade && apt-get -y install wget python && wget --no-check-certificate https://raw.github.com/thesheff17/yore/master/yore.py && python yore.py apt-mirror && python yore.py run
 
 #################
 Technical Details
@@ -41,4 +37,10 @@ Technical Details
     * https://github.com/kien/ctrlp.vim.git
     * https://github.com/scrooloose/nerdtree
     * https://github.com/klen/python-mode.git
-    * https://github.com/Lokaltog/vim-powerline.git
+    * https://github.com/Lokaltog/vim-powerline.gitS
+
+###############
+Speed of Script
+###############
+* Without local apt-mirror
+* With local apt-mirror
