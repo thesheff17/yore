@@ -186,12 +186,14 @@ class Yore:
         self.runCommand("updatedb")
 
     def clean(self):
-        directory = "/home/" + self.defaultUser + "/"
-        if os.path.isdir(directory + '.vim'):
-            self.runCommand("rm -rf " + directory + '.vim', True)
+        if os.path.isdir(self.directory + '.vim'):
+            self.runCommand("rm -rf " + self.directory + '.vim', True)
 
-        if os.path.isfile(directory + ".vimrc"):
-            self.runCommand("rm " + directory + '.vimrc', True)
+        if os.path.isfile(self.directory + ".vimrc"):
+            self.runCommand("rm " + self.directory + '.vimrc', True)
+
+        if os.path.isdire(self.directory + ".virtualenvs"):
+            self.runCommand("rm -rf " + self.directory + '.virtualenvs', True)
 
 
 if __name__ == "__main__":
