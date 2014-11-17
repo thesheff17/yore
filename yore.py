@@ -1,7 +1,8 @@
 #!/usr/bin/env python2.7
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) Dan Sheffner Digitsoft, INC
+# Copyright (c) Dan Sheffner Digital Imaging Software Solutions, INC
+# Email: Dan@Sheffner.com
 # All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
