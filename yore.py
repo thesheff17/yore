@@ -32,6 +32,7 @@ yore.py - This program will create a development env from start to finish
 import os
 import sys
 import subprocess
+import shutil
 import timeit
 
 
@@ -188,13 +189,16 @@ class Yore:
 
     def clean(self):
         if os.path.isdir(self.directory + '.vim'):
-            self.runCommand("rm -rf " + self.directory + '.vim', True)
-
-        if os.path.isfile(self.directory + ".vimrc"):
-            self.runCommand("rm " + self.directory + '.vimrc', True)
+            shutil.rmtree(self.directory + '.vim')
 
         if os.path.isdir(self.directory + ".virtualenvs"):
-            self.runCommand("rm -rf " + self.directory + '.virtualenvs', True)
+            shutil.rmtree(self.directory + ".virtualenvs")
+
+        if os.path.isfile(self.directory + "requirements.txt"):
+            os.remove(self.directory + "requirements.txt")
+
+        if os.path.isfile(self.directory + ".vimrc"):
+            os.remove(self.directory + ".vimrc")
 
 
 if __name__ == "__main__":
@@ -210,6 +214,7 @@ if __name__ == "__main__":
         print "This is an interactive prompt.  You need to pass it an option"
         print "run        - installs the dev env"
         print "apt-mirror - configures your local mirror"
+        print "clean      - cleans up the old files"
 
     if option == "run":
         yore.clearScreen()
@@ -234,6 +239,7 @@ if __name__ == "__main__":
         yore.clearScreen()
         yore.preMenu2()
         yore.clean()
+
     stop = timeit.default_timer()
     print stop - start
     print "yore.py completed..."
