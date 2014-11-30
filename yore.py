@@ -217,7 +217,6 @@ if __name__ == "__main__":
         print "clean      - cleans up the old files"
 
     if option == "run":
-        yore.clearScreen()
         yore.preMenu()
         yore.preMenu2()
         yore.ubuntuUpdates()
@@ -230,13 +229,12 @@ if __name__ == "__main__":
         yore.virtualEnvConfig()
 
     if option == "apt-mirror":
-        yore.clearScreen()
+        yore.preMenu()
         print "Please enter a DNS name or IP address"
         mirror = raw_input("DNS/IP: ")
         yore.setLocalMirror(mirror)
 
     if option == "clean":
-        yore.clearScreen()
         yore.preMenu2()
         yore.clean()
 
