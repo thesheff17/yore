@@ -18,9 +18,9 @@ Requirements
 Installation
 ############
 * copy/paste the below command if you don't have a local mirror
-    * apt-get upgrade && apt-get -y install wget python && wget --no-check-certificate https://raw.github.com/thesheff17/yore/master/yore.py && python yore.py run
+    * apt-get update && apt-get -y upgrade && apt-get -y install wget python && wget --no-check-certificate https://raw.github.com/thesheff17/yore/master/yore.py && python yore.py run
 * copy/paste the below command if you do have a local mirror
-    * apt-get upgrade && apt-get -y install wget python && wget --no-check-certificate https://raw.github.com/thesheff17/yore/master/yore.py && python yore.py apt-mirror && python yore.py run
+    * apt-get update && apt-get -y upgrade && apt-get -y install wget python && wget --no-check-certificate https://raw.github.com/thesheff17/yore/master/yore.py && python yore.py apt-mirror && python yore.py run
 
 #####
 Usage
