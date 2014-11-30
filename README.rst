@@ -32,6 +32,8 @@ Usage
     * cp ~/requirements.txt .
 * install the packages
     * pip install -r requirements.txt
+* start flask app
+    * python app.py
 * used after a virtualenv is already created
     * workon test
 

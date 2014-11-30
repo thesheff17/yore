@@ -170,11 +170,16 @@ class Yore:
                             " https://raw.githubusercontent.com/thesheff17/" +
                             "yore/master/wombat256mod.vim", True)
 
-    def getRequirementsSample(self):
+    def getFiles(self):
         self.runCommand("curl -LSso " + self.directory +
                         "requirements.txt " +
                         "https://raw.githubusercontent.com/thesheff17/" +
                         "yore/master/requirementsSample.txt", True)
+
+        self.runCommand("curl -LSso " + self.directory +
+                        "requirements.txt " +
+                        "https://raw.githubusercontent.com/thesheff17/" +
+                        "yore/master/app.py", True)
 
     def virtualEnvConfig(self):
         with open(self.directory + ".bashrc", 'w') as file:
@@ -199,6 +204,9 @@ class Yore:
 
         if os.path.isfile(self.directory + ".vimrc"):
             os.remove(self.directory + ".vimrc")
+
+        if os.path.isfile(self.directory + "app.py"):
+            os.remove(self.directory + " app.py")
 
 
 if __name__ == "__main__":
@@ -225,7 +233,7 @@ if __name__ == "__main__":
         yore.vim()
         yore.fixPermissions()
         yore.buildLocateDB()
-        yore.getRequirementsSample()
+        yore.getFiles()
         yore.virtualEnvConfig()
 
     if option == "apt-mirror":
