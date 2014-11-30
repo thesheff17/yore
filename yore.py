@@ -177,7 +177,7 @@ class Yore:
                         "yore/master/requirementsSample.txt", True)
 
         self.runCommand("curl -LSso " + self.directory +
-                        "requirements.txt " +
+                        "app.py " +
                         "https://raw.githubusercontent.com/thesheff17/" +
                         "yore/master/app.py", True)
 
