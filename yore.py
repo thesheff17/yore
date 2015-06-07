@@ -45,29 +45,22 @@ class Yore:
         """
         manages all the software you need on your machine
         """
-        update = "apt-get update"
+        self.update = "apt-get update"
         preFix = "apt-get -y "
-        upgrade = preFix + " upgrade"
+        self.upgrade = preFix + " upgrade"
 
-        packages = preFix + ("install python-pip python-dev build-essential " +
-                             "bpython git-core postgresql postgresql-contrib " +
-                             "vim libpq-dev curl wget ssh locate mailutils " +
-                             "mutt postfix sendemail mongodb " +
-                             "postgresql-server-dev-9.3 " +
-                             "mongodb")
+        self.packages = preFix + ("install python-pip python-dev " +
+                                  "build-essential git-core postgresql " +
+                                  "postgresql-contrib vim libpq-dev curl wget "
+                                  "ssh locate mailutils mutt sendemail" +
+                                  "postgresql-server-dev-9.3 ")
 
-        pip = "pip install virtualenv autoenv virtualenvwrapper"
+        self.pip = "pip install virtualenv autoenv virtualenvwrapper"
 
         self.nonInteractivePackages = ("DEBIAN_FRONTEND=noninteractive " +
                                        preFix + "install mailutils mutt " +
                                        "postfix sendemail mysql-server " +
                                        "postgresql-9.3")
-        self.update = update.split()
-        self.upgrade = upgrade.split()
-
-        self.packages = packages.split()
-        self.pip = pip.split()
-        # self.nonInteractivePackages = nonInteractivePackages.split()
 
         # git repos
         self.vimRepo = []
@@ -86,8 +79,16 @@ class Yore:
             print "You are not root. Please switch to root or use sudo."
             sys.exit(1)
 
+    def runCommand(self, commandString, useShell=False):
+        commandList = commandString.split(" ")
+        status = subprocess.call(commandList, shell=useShell)
+
+        if status is not 0:
+            print "Command failed: " + commandString
+            sys.exit()
+
     def clearScreen(self):
-        os.system("clear")
+        self.runCommand("clear")
 
     def preMenu(self):
         self.clearScreen()
@@ -113,13 +114,6 @@ class Yore:
         print ""
         self.defaultUser = raw_input("Enter a username: ")
         self.directory = "/home/" + self.defaultUser + "/"
-
-    def runCommand(self, commandList, useShell=False):
-        status = subprocess.call(commandList, shell=useShell)
-
-        if status is not 0:
-            print "Command failed: " + str(commandList)
-            sys.exit()
 
     def setLocalMirror(self, ip):
         with open('/etc/apt/sources.list', 'w') as fileObj:
@@ -150,7 +144,7 @@ class Yore:
 
             self.runCommand("curl -LSso " + self.directory +
                             ".vim/autoload/pathogen.vim " +
-                            "https://tpo.pe/pathogen.vim", True)
+                            "https://tpo.pe/pathogen.vim")
 
             for each in self.vimRepo:
                 self.runCommand("cd " + self.directory + ".vim/bundle && " +
@@ -159,43 +153,55 @@ class Yore:
             # my .vimrc file
             self.runCommand("curl -LSso " + self.directory + ".vimrc" +
                             " https://raw.githubusercontent.com/thesheff17/" +
-                            "yore/master/vimrc", True)
+                            "yore/master/vimrc")
 
             # Due to this bug I have committed my own version of lint.py
             # https://github.com/klen/python-mode/issues/452
             lintFile = self.directory + ".vim/bundle/python-mode/pymode/lint.py"
-            self.runCommand(["rm", lintFile])
+            self.runCommand("rm " + lintFile)
             self.runCommand("curl -LSso " + lintFile +
                             " https://raw.githubusercontent.com/thesheff17/"
-                            "yore/master/lint.py", True)
+                            "yore/master/lint.py")
 
             # colors file
             self.runCommand("curl -LSso " + self.directory +
                             ".vim/colors/wombat256mod.vim" +
                             " https://raw.githubusercontent.com/thesheff17/" +
-                            "yore/master/wombat256mod.vim", True)
+                            "yore/master/wombat256mod.vim")
 
     def getFiles(self):
         self.runCommand("curl -LSso " + self.directory +
                         "requirements.txt " +
                         "https://raw.githubusercontent.com/thesheff17/" +
-                        "yore/master/requirementsSample.txt", True)
+                        "yore/master/requirementsSample.txt")
 
         self.runCommand("curl -LSso " + self.directory +
                         "app.py " +
                         "https://raw.githubusercontent.com/thesheff17/" +
-                        "yore/master/app.py", True)
+                        "yore/master/app.py")
 
     def virtualEnvConfig(self):
         with open(self.directory + ".bashrc", 'w') as file:
                 file.write("source /usr/local/bin/virtualenvwrapper.sh\n")
 
     def fixPermissions(self):
-        self.runCommand(["chown", "-H", "-R", self.defaultUser + ":" +
-                         self.defaultUser, self.directory])
+        self.runCommand("chown -H  -R  " + self.defaultUser + ":" +
+                        self.defaultUser + " " + self.directory)
 
     def buildLocateDB(self):
         self.runCommand("updatedb")
+
+    def mongodb(self):
+        self.runCommand("sudo apt-key adv --keyserver " +
+                        "hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10")
+
+        self.runCommand("""echo "deb http://repo.mongodb.org/apt/ubuntu
+                        "$(lsb_release -sc)"/mongodb-org/3.0 multiverse" |
+                        sudo tee
+                        /etc/apt/sources.list.d/mongodb-org-3.0.list""", True)
+
+        self.runCommand(self.update)
+        self.runCommand("apt-get install -y mongodb-org")
 
     def clean(self):
         if os.path.isdir(self.directory + '.vim'):
@@ -240,6 +246,7 @@ if __name__ == "__main__":
         yore.buildLocateDB()
         yore.getFiles()
         yore.virtualEnvConfig()
+        yore.mongodb()
 
     if option == "apt-mirror":
         yore.preMenu()
