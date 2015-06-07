@@ -52,8 +52,7 @@ class Yore:
         self.packages = preFix + ("install python-pip python-dev " +
                                   "build-essential git-core postgresql " +
                                   "postgresql-contrib vim libpq-dev curl wget "
-                                  "ssh locate mailutils mutt sendemail " +
-                                  "postgresql-server-dev-9.3 ")
+                                  "ssh locate postgresql-server-dev-9.3")
 
         self.pip = "pip install virtualenv autoenv virtualenvwrapper"
 
@@ -80,8 +79,12 @@ class Yore:
             sys.exit(1)
 
     def runCommand(self, commandString, useShell=False):
-        commandList = commandString.split(" ")
-        status = subprocess.call(commandList, shell=useShell)
+
+        if useShell:
+            status = subprocess.call(commandString, shell=useShell)
+        else:
+            commandList = commandString.split(" ")
+            status = subprocess.call(commandList, shell=useShell)
 
         if status is not 0:
             print "Command failed: " + commandString
@@ -185,23 +188,31 @@ class Yore:
                 file.write("source /usr/local/bin/virtualenvwrapper.sh\n")
 
     def fixPermissions(self):
-        self.runCommand("chown -H  -R  " + self.defaultUser + ":" +
+        self.runCommand("chown -H -R " + self.defaultUser + ":" +
                         self.defaultUser + " " + self.directory)
 
     def buildLocateDB(self):
         self.runCommand("updatedb")
 
     def mongodb(self):
-        self.runCommand("sudo apt-key adv --keyserver " +
-                        "hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10")
+        pass
+        # There is some bug here with it being a lxc/lxd container :(
+        # invoke-rc.d: initscript mongodb, action "start" failed.
+        # self.runCommand("apt-key adv --keyserver " +
+        #                "hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10")
 
-        self.runCommand("""echo "deb http://repo.mongodb.org/apt/ubuntu
-                        "$(lsb_release -sc)"/mongodb-org/3.0 multiverse" |
-                        sudo tee
-                        /etc/apt/sources.list.d/mongodb-org-3.0.list""", True)
+        # with open('/etc/apt/sources.list.d/mongodb-org-3.0.list', 'w+')
+        # as file:
+        #    file.write('deb http://repo.mongodb.org/apt/ubuntu ' +
+        #               'trusty/mongodb-org/3.0 multiverse')
 
-        self.runCommand(self.update)
-        self.runCommand("apt-get install -y mongodb-org")
+        # self.runCommand(self.update)
+        # self.runCommand("export LANGUAGE=en_US.UTF-8 && " +
+        #                "export LANG=en_US.UTF-8 && " +
+        #                "export LC_ALL=en_US.UTF-8 && " +
+        #                "locale-gen en_US.UTF-8 && " +
+        #                "dpkg-reconfigure locales && " +
+        #                "apt-get install -y mongodb-org", True)
 
     def clean(self):
         if os.path.isdir(self.directory + '.vim'):
@@ -217,7 +228,7 @@ class Yore:
             os.remove(self.directory + ".vimrc")
 
         if os.path.isfile(self.directory + "app.py"):
-            os.remove(self.directory + " app.py")
+            os.remove(self.directory + "app.py")
 
 
 if __name__ == "__main__":
