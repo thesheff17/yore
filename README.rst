@@ -22,14 +22,21 @@ Installation
 * copy/paste the below command if you do have a local mirror
     * apt-get update && apt-get -y upgrade && apt-get -y install wget python && wget --no-check-certificate https://raw.github.com/thesheff17/yore/master/yore.py && python yore.py apt-mirror && python yore.py run
 
+############################
+apt-get for requirements.txt
+############################
+* these packages are needed for requirements.txt file if you are not
+  configuring this entire tool:
+*  sudo apt-get -y install python-dev build-essential libffi-dev libpq-dev python-pip wget
+
 #####
 Usage
 #####
 * log out and log back in to make sure the vim settings take effect
 * create a new virtualenv
     * mkvirtualenv test
-* copy the default requirements file into the virtualenv
-    * cp ~/requirements.txt .
+* copy the default requirements file into your git repo
+    * cp requirementsSample.txt ~/git/gitRepo/requirements.txt
 * install the packages
     * pip install -r requirements.txt
 * start flask app
