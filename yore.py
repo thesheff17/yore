@@ -51,12 +51,14 @@ class Yore:
 
         packages = preFix + ("install python-pip python-dev build-essential " +
                              "bpython git-core postgresql postgresql-contrib " +
-                             "vim libpq-dev curl wget openssh-server locate")
+                             "vim libpq-dev curl wget ssh locate mailutils " +
+                             "mutt postfix sendemail mysql-server mongodb " +
+                             "postgres-server mongodb")
         pip = "pip install virtualenv autoenv virtualenvwrapper"
+
         self.nonInteractivePackages = ("DEBIAN_FRONTEND=noninteractive " +
                                        preFix + "install mailutils mutt " +
-                                       "postfix sendemail mysql-server")
-
+                                       "postfix sendemail mysql-server ")
         self.update = update.split()
         self.upgrade = upgrade.split()
 
