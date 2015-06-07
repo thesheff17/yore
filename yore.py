@@ -47,7 +47,7 @@ class Yore:
         """
         self.update = "apt-get update"
         preFix = "apt-get -y "
-        self.upgrade = preFix + " upgrade"
+        self.upgrade = preFix + "upgrade"
 
         self.packages = preFix + ("install python-pip python-dev " +
                                   "build-essential git-core postgresql " +
