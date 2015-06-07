@@ -53,7 +53,8 @@ class Yore:
                              "bpython git-core postgresql postgresql-contrib " +
                              "vim libpq-dev curl wget ssh locate mailutils " +
                              "mutt postfix sendemail mysql-server mongodb " +
-                             "postgres-server mongodb")
+                             "postgresql-server-dev-9.3 postgresql-9.3 " +
+                             "mongodb")
         pip = "pip install virtualenv autoenv virtualenvwrapper"
 
         self.nonInteractivePackages = ("DEBIAN_FRONTEND=noninteractive " +
