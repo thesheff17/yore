@@ -26,7 +26,7 @@ Installation
 Usage
 #####
 * set a ubuntu password if you don't already have one set
-  * passwd ubuntu
+    * passwd ubuntu
 * log out and log back in to make sure the vim settings take effect
 * create a new virtualenv
     * mkvirtualenv test
