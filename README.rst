@@ -3,7 +3,7 @@ Yore
 ####
 
 * yore.py - I need a script to automatically create a linux machine for
-  programming.
+  programming. apt-get, pip, db, and vim plugins.
 
 ############
 Requirements
@@ -22,21 +22,14 @@ Installation
 * copy/paste the below command if you do have a local mirror
     * apt-get update && apt-get -y upgrade && apt-get -y install wget python && wget --no-check-certificate https://raw.github.com/thesheff17/yore/master/yore.py && python yore.py apt-mirror && python yore.py run
 
-############################
-apt-get for requirements.txt
-############################
-* these packages are needed for requirements.txt file if you are not
-  configuring this entire tool:
-*  sudo apt-get -y install python-dev build-essential libffi-dev libpq-dev python-pip wget
-
 #####
 Usage
 #####
+* set a ubuntu password if you don't already have one set
+  * passwd ubuntu
 * log out and log back in to make sure the vim settings take effect
 * create a new virtualenv
     * mkvirtualenv test
-* copy the default requirements file into your git repo
-    * cp requirementsSample.txt ~/git/gitRepo/requirements.txt
 * install the packages
     * pip install -r requirements.txt
 * start flask app
@@ -49,25 +42,9 @@ Usage
 Technical Details
 #################
 
-* apt-get the folling packages: python-pip python-dev build-essential bpython  git-core postgresql postgresql-contrib vim libpq-dev curl wget openssh-server locate
-* apt-get non interactive packages: mailutils mutt postfix sendemail mysql-server
-* pip install virtualenv autoenv virtualenvwrapper
 * Vim plugins:
     * https://github.com/tpope/vim-pathogen
     * https://github.com/kien/ctrlp.vim.git
     * https://github.com/scrooloose/nerdtree
     * https://github.com/klen/python-mode.git
     * https://github.com/Lokaltog/vim-powerline.gitS
-
-###############
-Speed of Script
-###############
-* Hardware
-    * CPU: i7-4750HQ
-    * RAM: 16GB RAM
-    * HD: Samsung 840 EVO SSD
-    * Internet: 50 Mbps
-* Without local apt-mirror
-    * 127.58 seconds
-* With local apt-mirror
-    * 81.59 seconds
