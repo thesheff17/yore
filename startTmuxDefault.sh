@@ -1,4 +1,4 @@
-/bin/bash
+#/bin/bash
 # Copyright (c) Dan Sheffner Digital Imaging Software Solutions, INC
 # Email: Dan@Sheffner.com
 # All rights reserved.
@@ -25,7 +25,7 @@
 # startTmuxDefault.sh - easy to use tmux session with top
 
 tmux start-server
-tmux new-session -d -s monitor -n htop
+tmux new-session -d -s monitor
 
 #splits
 tmux split-window -h -p 50

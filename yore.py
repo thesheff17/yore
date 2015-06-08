@@ -185,7 +185,7 @@ class Yore:
                         "yore/master/app.py")
 
         self.runCommand("curl -LSso " + self.directory +
-                        "app.py " +
+                        "startTmuxDefault.sh " +
                         "https://raw.githubusercontent.com/thesheff17/" +
                         "yore/master/startTmuxDefault.sh")
 
