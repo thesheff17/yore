@@ -53,7 +53,7 @@ class Yore:
                                   "build-essential git-core postgresql " +
                                   "postgresql-contrib vim libpq-dev curl wget "
                                   "ssh locate postgresql-server-dev-9.3 " +
-                                  "libssl-dev libffi-dev")
+                                  "libssl-dev libffi-dev tmux htop")
 
         self.pip = "pip install virtualenv autoenv virtualenvwrapper"
 
@@ -183,6 +183,11 @@ class Yore:
                         "app.py " +
                         "https://raw.githubusercontent.com/thesheff17/" +
                         "yore/master/app.py")
+
+        self.runCommand("curl -LSso " + self.directory +
+                        "app.py " +
+                        "https://raw.githubusercontent.com/thesheff17/" +
+                        "yore/master/startTmuxDefault.sh")
 
     def virtualEnvConfig(self):
         with open(self.directory + ".bashrc", 'w') as file:
