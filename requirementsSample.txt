@@ -21,6 +21,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
+# the minimum apt-get packages for all the below to work
+# sudo apt-get -y install python-dev build-essential libffi-dev libpq-dev
+# python-pip wget
+
+# amazon aws command line tools
+awscli
+
 # flask 
 Flask
 Flask-Bcrypt
