@@ -25,11 +25,11 @@
 # sudo apt-get -y install python-dev build-essential libffi-dev libpq-dev
 # python-pip wget
 
-# amazon tools
+# amazon hosting tools
 awscli
 boto
 
-# flask 
+# flask web micro framework
 Flask
 Flask-Bcrypt
 Flask-Login
@@ -38,16 +38,6 @@ Flask-SQLAlchemy
 Flask-Script
 Flask-Testing
 Flask-WTF
-
-# django
-django
-
-# template engine
-Jinja2
-Mako
-
-# xml parser
-MarkupSafe
 
 # web dev
 WTForms
@@ -65,10 +55,24 @@ mongokit
 # database migration tool
 alembic
 
+# template engine
+Jinja2
+Mako
+
+# faster math modules
+m3-cdecimal
+numpy
+
+# django
+django
+
+# xml parser
+MarkupSafe
+
 # servers
 gunicorn
 
-# encryption 
+# encryption
 py-bcrypt
 
 # python prompts
