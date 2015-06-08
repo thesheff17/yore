@@ -52,7 +52,8 @@ class Yore:
         self.packages = preFix + ("install python-pip python-dev " +
                                   "build-essential git-core postgresql " +
                                   "postgresql-contrib vim libpq-dev curl wget "
-                                  "ssh locate postgresql-server-dev-9.3")
+                                  "ssh locate postgresql-server-dev-9.3 " +
+                                  "libssl-dev libffi-dev")
 
         self.pip = "pip install virtualenv autoenv virtualenvwrapper"
 
