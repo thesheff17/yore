@@ -188,3 +188,11 @@ set clipboard=unnamedplus
 
 " load up the nerd tree
 autocmd vimenter * NERDTree
+
+" move nerdtree to the right
+let g:NERDTreeWinPos = "right"
+" " move to the first buffer
+autocmd VimEnter * wincmd p
+
+" paste toggle
+set pastetoggle=<F2>
