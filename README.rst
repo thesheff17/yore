@@ -27,7 +27,11 @@ Usage
 #####
 * set a ubuntu password if you don't already have one set
     * passwd ubuntu
-* log out and log back in to make sure the vim settings take effect
+* log out and log back in to make sure the .bashrc settings take effect
+    * This only goes for LXD/LXC instances.  If you ran lxc exec name /bin/bash
+      you really don't have a standard TTY.  You should ifconfig and get the 
+      ip of the server and ssh into it.  ssh ubuntu@ipAddress.  This way
+      vim will load full screen.
 * create a new virtualenv
     * mkvirtualenv test
 * install the packages
