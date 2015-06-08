@@ -59,9 +59,10 @@ alembic
 Jinja2
 Mako
 
-# faster math modules
+# scientific/math
+# numpy is slow to compile. Add it when you need it
+# numpy
 m3-cdecimal
-numpy
 
 # django
 django
