@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 # Copyright (c) Dan Sheffner Digital Imaging Software Solutions, INC
 # Email: Dan@Sheffner.com
 # All rights reserved.

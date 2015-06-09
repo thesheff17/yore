@@ -259,11 +259,11 @@ if __name__ == "__main__":
         yore.basePackages()
         yore.pipPackages()
         yore.vim()
-        yore.fixPermissions()
         yore.buildLocateDB()
         yore.getFiles()
         yore.virtualEnvConfig()
         yore.mongodb()
+        yore.fixPermissions()
 
     if option == "apt-mirror":
         yore.preMenu()
